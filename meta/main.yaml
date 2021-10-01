@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: ansible_roles_nginx
+  role_name: ansible-roles-nginx
   author: kkurpanik
   description: NGINX for Linux
   min_ansible_version: 2.5
