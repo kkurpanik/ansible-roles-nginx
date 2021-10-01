@@ -1,1 +1,8 @@
 ---
+- name: Install RedHat packages
+  yum:
+    name: "{{ redhat_packages }}"
+    state: present
+  register: _yum
+  until: _yum is succeeded
+  retries: 5
