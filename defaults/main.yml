@@ -4,4 +4,5 @@ debian_packages:
   - python3-semanage
 redhat_packages:
   - epel-release
-  - python3-semanage
+  - policycoreutils-python
+  - policycoreutils-python-utils
