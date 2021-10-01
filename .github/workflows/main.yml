@@ -29,7 +29,7 @@ jobs:
         distro:
           - 'centos/8'
           - 'centos/7'
-          - 'debian/bullseye64'
+          # - 'debian/bullseye64'
 
     steps:
       - name: Check out the codebase.
