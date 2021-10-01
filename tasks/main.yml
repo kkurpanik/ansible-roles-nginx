@@ -20,7 +20,8 @@
 - name: Ensure SSL directory exists
   file:
     path: "/etc/nginx/ssl/"
-    state: directory    
+    state: directory
+    mode: "0755"
 
 - name: Copy SSL certificate to NGINX host
   copy:
