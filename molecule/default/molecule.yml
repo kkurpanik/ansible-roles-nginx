@@ -1,0 +1,22 @@
+---
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+platforms:
+  - name: instance
+    box: ${MOLECULE_DISTRO:-generic/ubuntu2004}
+    memory: 4096
+    cpu: 1
+    instance_raw_config_args:
+      - "vm.network 'forwarded_port', guest: 443, host: 443, protocol: 'tcp'"
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra
+  options:
+    s: true

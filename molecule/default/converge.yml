@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  gather_facts: true
+  tasks:
+    - name: "Include ansible-roles-nginx-proxy"
+      include_role:
+        name: "ansible-roles-nginx-proxy"
