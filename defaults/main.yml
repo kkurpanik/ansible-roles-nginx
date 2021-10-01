@@ -1,0 +1,6 @@
+---
+debian_packages:
+  - python3-selinux
+  - python3-semanage
+redhat_packages:
+  - python3-semanage

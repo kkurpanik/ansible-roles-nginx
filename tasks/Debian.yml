@@ -1,0 +1,9 @@
+---
+- name: Install Debian packages
+  apt:
+    name: "{{ debian_packages }}"
+    state: present
+    update_cache: true
+  register: _apt
+  until: _apt is succeeded
+  retries: 5

@@ -1,0 +1,58 @@
+---
+- name: Include OS-specific tasks
+  include_tasks: "{{ ansible_facts.os_family }}.yml"
+
+- name: Install nginx
+  package:
+    name: nginx
+    state: present
+  register: _pkg
+  until: _pkg is succeeded
+  retries: 5
+
+- name: Set httpd_can_network_connect flag on and keep it persistent across reboots
+  seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+  when: ansible_facts.selinux.status == 'enabled'
+
+- name: Ensure SSL directory exists
+  file:
+    path: "/etc/nginx/ssl/"
+    state: directory    
+
+- name: Copy SSL certificate to NGINX host
+  copy:
+    src: "ssl.crt"
+    dest: "/etc/nginx/ssl/ssl.crt"
+    mode: "0644"
+
+- name: Copy SSL key to NGINX host
+  copy:
+    src: "ssl.key"
+    dest: "/etc/nginx/ssl/ssl.key"
+    mode: "0644"
+
+- name: Create NGINX configuration file
+  template:
+    src: "proxy.conf.j2"
+    dest: "/etc/nginx/conf.d/proxy.conf"
+    mode: "0644"
+
+- name: Restart NGNIX server and enable it
+  service:
+    name: "nginx"
+    state: restarted
+    enabled: true
+
+- name: Populate service facts
+  service_facts:
+
+- name: Allow NGINX https port on firewall
+  firewalld:
+    port: "443/tcp"
+    permanent: true
+    immediate: true
+    state: enabled
+  when: ansible_facts['services']['firewalld.service'] is defined and ansible_facts['services']['firewalld.service']['state'] == 'running'
