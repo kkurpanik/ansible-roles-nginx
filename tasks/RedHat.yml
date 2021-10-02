@@ -1,8 +1,18 @@
 ---
-- name: Install RedHat packages
+- name: Install RedHat7 packages
   yum:
     name: "{{ redhat_packages }}"
     state: present
   register: _yum
   until: _yum is succeeded
   retries: 5
+  when: ansible_facts['distribution_major_version'] == "7"
+
+- name: Install RedHat8 packages
+  yum:
+    name: "{{ redhat_packages }}"
+    state: present
+  register: _yum
+  until: _yum is succeeded
+  retries: 5
+  when: ansible_facts['distribution_major_version'] == "8"
