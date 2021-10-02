@@ -2,6 +2,8 @@
 debian_packages:
   - python3-selinux
   - python3-semanage
-redhat_packages:
+redhat7_packages:
   - epel-release
   - libsemanage-python
+redhat8_packages:
+  - python3-libsemanage
