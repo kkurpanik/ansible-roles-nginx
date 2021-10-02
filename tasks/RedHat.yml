@@ -1,7 +1,7 @@
 ---
 - name: Install RedHat7 packages
   yum:
-    name: "{{ redhat_packages }}"
+    name: "{{ redhat7_packages }}"
     state: present
   register: _yum
   until: _yum is succeeded
@@ -10,7 +10,7 @@
 
 - name: Install RedHat8 packages
   yum:
-    name: "{{ redhat_packages }}"
+    name: "{{ redhat8_packages }}"
     state: present
   register: _yum
   until: _yum is succeeded
