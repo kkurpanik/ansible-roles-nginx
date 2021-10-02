@@ -40,11 +40,11 @@
     src: "proxy.conf.j2"
     dest: "/etc/nginx/conf.d/proxy.conf"
     mode: "0644"
+  notify: Restart NGINX service
 
-- name: Restart NGNIX server and enable it
+- name: Ensure NGNIX is enabled
   service:
     name: "nginx"
-    state: restarted
     enabled: true
 
 - name: Populate service facts
