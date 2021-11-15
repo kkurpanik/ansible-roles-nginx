@@ -1,2 +1,18 @@
 ---
 galaxy_info:
+  role_name: ansible_roles_nginx_proxy
+  author: kkurpanik
+  description: NGINX for Linux
+  min_ansible_version: 2.5
+  platforms:
+  - name: RHEL
+    versions:
+    - 8
+    - 7
+  - name: Debian
+    versions:
+    - Bullseye64
+  galaxy_tags:
+    - nginx
+    - webserver
+    - http
