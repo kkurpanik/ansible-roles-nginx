@@ -4,9 +4,9 @@
   become: true
   gather_facts: true
   tasks:
-    - name: "Include ansible-roles-nginx-proxy"
+    - name: "Include ansible_roles_nginx_proxy"
       include_role:
-        name: "ansible-roles-nginx-proxy"
+        name: "ansible_roles_nginx_proxy"
       vars:
         graylog_fqdn: "graylog.YourDomain.pl"
         bind_ip: "127.0.0.1"
