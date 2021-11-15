@@ -1,19 +1,29 @@
 ---
+dependency:
+  name: galaxy
 driver:
   name: vagrant
-  provider:
-    name: virtualbox
+  provider: 
+    name: libvirt
+    type: libvirt
+  parallel: true
 lint: |
-  set -e
   yamllint .
   ansible-lint
+  flake8
 platforms:
-  - name: instance
-    box: ${MOLECULE_DISTRO:-generic/ubuntu2004}
-    memory: 4096
-    cpu: 1
-    instance_raw_config_args:
-      - "vm.network 'forwarded_port', guest: 443, host: 443, protocol: 'tcp'"
+  - name: centos7
+    box: centos/7
+    memory: 1024
+    cpus: 1
+  - name: centos8
+    box: centos/8
+    memory: 1024
+    cpus: 1
+  - name: debian11
+    box: debian/bullseye64
+    memory: 1024
+    cpus: 1
 provisioner:
   name: ansible
 verifier:
