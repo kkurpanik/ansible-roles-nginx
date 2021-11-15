@@ -3,7 +3,7 @@ dependency:
   name: galaxy
 driver:
   name: vagrant
-  provider: 
+  provider:
     name: libvirt
     type: libvirt
   parallel: true
