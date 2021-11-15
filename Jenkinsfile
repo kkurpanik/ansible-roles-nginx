@@ -7,6 +7,7 @@ node('large') {
         stage('CI-Test'){
             sh """
             source /home/jenkins/venv/molecule/bin/activate
+            cd nginx-proxy-role
             molecule test
             """
         }
